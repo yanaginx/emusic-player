@@ -1,13 +1,36 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
-function Dashboard() {
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setUserAuth,
+  refreshAuthToken,
+  reset,
+} from "../features/auth/authSlice";
+
+function Dashboard({ auth }) {
+  console.log("[DEBUG] auth can be seen from DASHBOARD: ", auth);
+
+  // DEBUG
+  useEffect(() => {
+    console.log("[DEBUG] REFRESHING TOKEN");
+    if (auth) {
+      const seeInterval = setInterval(() => {
+        console.log("[DEBUG] auth from Dashboard: ", auth);
+      }, 1000 * 10);
+      return () => {
+        clearInterval(seeInterval);
+      };
+    }
+  }, [auth]);
+  // END : DEBUG
+
   const navigate = useNavigate();
   const onFER = () => {
     navigate("/fer");
   };
-  // const onLogin = () => {
-  //   navigate("/api/auth/login");
-  // };
 
   return (
     <>
@@ -23,6 +46,11 @@ function Dashboard() {
           Emotion detect
         </button>
       </div>
+      {auth ? (
+        <a href="/api/auth/logout">LOGOUT SPOTIFY</a>
+      ) : (
+        <h3>You have not login yet</h3>
+      )}
     </>
   );
 }

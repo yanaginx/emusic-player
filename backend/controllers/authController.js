@@ -20,6 +20,7 @@ const loginUser = (req, res) => {
 // @route   GET /api/auth/callback
 const getTokenWithCode = async (req, res) => {
   if (req.query.error) {
+    res.status(400);
     throw new Error(req.query.error);
   }
   const code = req.query.code;
@@ -64,6 +65,7 @@ const getTokenWithCode = async (req, res) => {
     req.session.user_auth = user_auth;
     // then redirect to root
     return res.redirect("/");
+    // res.status(200).json(req.session.user_auth);
   }
 };
 
@@ -82,7 +84,7 @@ const getCurrentSession = (req, res) => {
 // @route  GET /api/auth/logout
 const logoutUser = (req, res) => {
   req.session = null;
-  res.redirect(`/`);
+  res.redirect("/");
 };
 
 // @desc    Refresh the user's access token

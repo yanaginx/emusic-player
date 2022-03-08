@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { getEmotions } from "../features/fer/ferSlice";
 import Spinner from "../components/Spinner";
 
-function Fer() {
+function Fer({ auth }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -13,12 +13,15 @@ function Fer() {
     (state) => state.fer
   );
 
+  console.log("[DEBUG] auth can be seen from FER: ", auth);
+
   useEffect(() => {
     if (isError) {
-      console.log(message);
       toast.error(message);
     }
     dispatch(getEmotions());
+
+    return () => dispatch(reset());
   }, [message, isError, dispatch]);
 
   if (isLoading) {

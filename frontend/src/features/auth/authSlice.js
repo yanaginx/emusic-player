@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 
-const user_auth = JSON.parse(localStorage.getItem("user_auth"));
+const user_auth = localStorage.getItem("user_auth");
 
 const initialState = {
   user_auth: user_auth ? user_auth : null,
@@ -11,11 +11,28 @@ const initialState = {
   message: "",
 };
 
-export const getUserAuth = createAsyncThunk(
-  "auth/getUserAuth",
+export const setUserAuth = createAsyncThunk(
+  "auth/setUserAuth",
+  async (user_auth, thunkAPI) => {
+    try {
+      return await authService.setUserAuth(user_auth);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const refreshAuthToken = createAsyncThunk(
+  "auth/refreshAuthToken",
   async (_, thunkAPI) => {
     try {
-      return await authService.getUserAuth();
+      return await authService.refreshAuthToken();
     } catch (error) {
       const message =
         (error.response &&
@@ -36,19 +53,37 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: (state) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.isSuccess = false;
+      state.message = "";
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getUserAuth.pending, (state) => {
+      .addCase(setUserAuth.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getUserAuth.fulfilled, (state, action) => {
+      .addCase(setUserAuth.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.user_auth = action.payload;
       })
-      .addCase(getUserAuth.rejected, (state, action) => {
+      .addCase(setUserAuth.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(refreshAuthToken.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(refreshAuthToken.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user_auth = action.payload;
+      })
+      .addCase(refreshAuthToken.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
