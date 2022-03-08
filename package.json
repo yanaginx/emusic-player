@@ -1,0 +1,30 @@
+{
+  "name": "emusic_player",
+  "version": "1.0.0",
+  "description": "The player with FER feature to choose the playlist according to the mood",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "yarn --cwd frontend dev",
+    "all": "concurrently \"yarn server\" \"yarn client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Duong VC",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "cookie-session": "^2.0.0",
+    "csurf": "^1.11.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-async-handler": "^1.2.0",
+    "helmet": "^5.0.2",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
