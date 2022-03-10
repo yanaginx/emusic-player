@@ -1,0 +1,770 @@
+{
+    "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi/playlists?offset=0&limit=20",
+    "items": [
+      {
+        "collaborative": false,
+        "description": "Entrain your brain with 60-beats-per-minute music. Low key, non-symphonic baroque music focusing on soloists is perfect to jumpstart work mornings and reboot after lunch.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/5e0xmtFTdjOoY2wH2maLL9"
+        },
+        "href": "https://api.spotify.com/v1/playlists/5e0xmtFTdjOoY2wH2maLL9",
+        "id": "5e0xmtFTdjOoY2wH2maLL9",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbc6b28d35800586ad08090111",
+            "width": null
+          }
+        ],
+        "name": "Baroque for brain",
+        "owner": {
+          "display_name": "amyloumoon",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/amyloumoon"
+          },
+          "href": "https://api.spotify.com/v1/users/amyloumoon",
+          "id": "amyloumoon",
+          "type": "user",
+          "uri": "spotify:user:amyloumoon"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTAyLDg4M2ZjMTViNTg1OWZkYzY0YWFiMjBhNjQ0ZGUzZDdjZjRkMmZlYmY=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/5e0xmtFTdjOoY2wH2maLL9/tracks",
+          "total": 156
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:5e0xmtFTdjOoY2wH2maLL9"
+      },
+      {
+        "collaborative": false,
+        "description": "Mix of over 300 J-Pop&#x2F;Anisongs. Personally selected. Constantly updated",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/5Yi3XGdqgliSlveK6GXFtA"
+        },
+        "href": "https://api.spotify.com/v1/playlists/5Yi3XGdqgliSlveK6GXFtA",
+        "id": "5Yi3XGdqgliSlveK6GXFtA",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbf6a341ff7b8c3a752fe0494b",
+            "width": null
+          }
+        ],
+        "name": "J-Pop / Ani song Mix",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "NTEwLDUyODQ3YjAyMWIzZDQ2NWEzYTZlYTY5N2VhZTQ2ZmJmZTlhZWY5ZDE=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/5Yi3XGdqgliSlveK6GXFtA/tracks",
+          "total": 377
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:5Yi3XGdqgliSlveK6GXFtA"
+      },
+      {
+        "collaborative": false,
+        "description": "Mix of 1000++ J - Music&#x2F;Anisongs. Personally selected. Continously updated.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/3kA2VYWbxTNhnXURt2aipw"
+        },
+        "href": "https://api.spotify.com/v1/playlists/3kA2VYWbxTNhnXURt2aipw",
+        "id": "3kA2VYWbxTNhnXURt2aipw",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbfb35c946e752e79ec9b00b74",
+            "width": null
+          }
+        ],
+        "name": "Japanese / Anime Song Mix",
+        "owner": {
+          "display_name": "Fadil Riyadi",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/21qqudtco6256wp7f6zjntrta"
+          },
+          "href": "https://api.spotify.com/v1/users/21qqudtco6256wp7f6zjntrta",
+          "id": "21qqudtco6256wp7f6zjntrta",
+          "type": "user",
+          "uri": "spotify:user:21qqudtco6256wp7f6zjntrta"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTc1Niw0NTkzYmNlMzkzZjA5YTI1ZGQ1NGYzYTlkNjVjNjZlMDViOTA0YWJi",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/3kA2VYWbxTNhnXURt2aipw/tracks",
+          "total": 1518
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:3kA2VYWbxTNhnXURt2aipw"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/5tkVUXTUY0baT7Xt7FLTmt"
+        },
+        "href": "https://api.spotify.com/v1/playlists/5tkVUXTUY0baT7Xt7FLTmt",
+        "id": "5tkVUXTUY0baT7Xt7FLTmt",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b273256b86508bfdc54899e4685eab67616d0000b273a1fbc93f1f424d133e22cce8ab67616d0000b273dd2c0e8a5d4b0c1e227e4c7bab67616d0000b273fd0d9a33127c1d3f58ba3504",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b273256b86508bfdc54899e4685eab67616d0000b273a1fbc93f1f424d133e22cce8ab67616d0000b273dd2c0e8a5d4b0c1e227e4c7bab67616d0000b273fd0d9a33127c1d3f58ba3504",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b273256b86508bfdc54899e4685eab67616d0000b273a1fbc93f1f424d133e22cce8ab67616d0000b273dd2c0e8a5d4b0c1e227e4c7bab67616d0000b273fd0d9a33127c1d3f58ba3504",
+            "width": 60
+          }
+        ],
+        "name": "BB",
+        "owner": {
+          "display_name": "dp",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/22yqbo6xny6yrimwbtuktkrbq"
+          },
+          "href": "https://api.spotify.com/v1/users/22yqbo6xny6yrimwbtuktkrbq",
+          "id": "22yqbo6xny6yrimwbtuktkrbq",
+          "type": "user",
+          "uri": "spotify:user:22yqbo6xny6yrimwbtuktkrbq"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYsODAxYmE2MjhhY2M2YjlmNjRmNjlkNGE1NjAyYmYxMmJhNTBkMTI0ZQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/5tkVUXTUY0baT7Xt7FLTmt/tracks",
+          "total": 12
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:5tkVUXTUY0baT7Xt7FLTmt"
+      },
+      {
+        "collaborative": false,
+        "description": "A blend of music for yanaginx and Na. Updates daily.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1EJI8NieCqbZJi"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EJI8NieCqbZJi",
+        "id": "37i9dQZF1EJI8NieCqbZJi",
+        "images": [
+          {
+            "height": null,
+            "url": "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-azure-pink-en.jpg",
+            "width": null
+          }
+        ],
+        "name": "Na + yanaginx",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MCwwMDAwMDAwMGVkZjQzNWU1MjYyOTAyZDJjY2EyNjFmMmYzZjJmMWY5",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EJI8NieCqbZJi/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1EJI8NieCqbZJi"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/76VGBzPhRxQm4z3e8nUpWh"
+        },
+        "href": "https://api.spotify.com/v1/playlists/76VGBzPhRxQm4z3e8nUpWh",
+        "id": "76VGBzPhRxQm4z3e8nUpWh",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbcb6415818f46629c5c759a1e",
+            "width": null
+          }
+        ],
+        "name": "Jumpin' around the world",
+        "owner": {
+          "display_name": "Na Pink",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31yree6em3u3yvovzozgi4kgyfoy"
+          },
+          "href": "https://api.spotify.com/v1/users/31yree6em3u3yvovzozgi4kgyfoy",
+          "id": "31yree6em3u3yvovzozgi4kgyfoy",
+          "type": "user",
+          "uri": "spotify:user:31yree6em3u3yvovzozgi4kgyfoy"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTI1LGYyYmFjOGRjNGY2MTliYTEyYzcyMmI2MjBiMjFjMmNjM2YyMGY5NmI=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/76VGBzPhRxQm4z3e8nUpWh/tracks",
+          "total": 56
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:76VGBzPhRxQm4z3e8nUpWh"
+      },
+      {
+        "collaborative": false,
+        "description": "J-Pop as cakes ",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/21uwTT7gyJXlrHf20Cs9U4"
+        },
+        "href": "https://api.spotify.com/v1/playlists/21uwTT7gyJXlrHf20Cs9U4",
+        "id": "21uwTT7gyJXlrHf20Cs9U4",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbadf33d84245df1932e45814d",
+            "width": null
+          }
+        ],
+        "name": "Lemme spread the J",
+        "owner": {
+          "display_name": "Na Pink",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31yree6em3u3yvovzozgi4kgyfoy"
+          },
+          "href": "https://api.spotify.com/v1/users/31yree6em3u3yvovzozgi4kgyfoy",
+          "id": "31yree6em3u3yvovzozgi4kgyfoy",
+          "type": "user",
+          "uri": "spotify:user:31yree6em3u3yvovzozgi4kgyfoy"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MjQ5LDc5OGExZGUyMDA0OTIwYWQyZjViMGIxYWNhNzU5YzQzMDcwMTBhZDA=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/21uwTT7gyJXlrHf20Cs9U4/tracks",
+          "total": 177
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:21uwTT7gyJXlrHf20Cs9U4"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/0mqNTFzpy2NYElMubfuaYL"
+        },
+        "href": "https://api.spotify.com/v1/playlists/0mqNTFzpy2NYElMubfuaYL",
+        "id": "0mqNTFzpy2NYElMubfuaYL",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbede40449135a5328e361a57c",
+            "width": null
+          }
+        ],
+        "name": "J-oldies",
+        "owner": {
+          "display_name": "Na Pink",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31yree6em3u3yvovzozgi4kgyfoy"
+          },
+          "href": "https://api.spotify.com/v1/users/31yree6em3u3yvovzozgi4kgyfoy",
+          "id": "31yree6em3u3yvovzozgi4kgyfoy",
+          "type": "user",
+          "uri": "spotify:user:31yree6em3u3yvovzozgi4kgyfoy"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTE3LGNlYjQzYmIxMDAwNjNlNGJhMGE4MDE1ZWVmZGI4YTNiZDVhY2I0MTk=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/0mqNTFzpy2NYElMubfuaYL/tracks",
+          "total": 111
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:0mqNTFzpy2NYElMubfuaYL"
+      },
+      {
+        "collaborative": false,
+        "description": "Fav Touhou&#x27;s tastes pt.2",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/2UctIbLQO6jPp79Sc6538e"
+        },
+        "href": "https://api.spotify.com/v1/playlists/2UctIbLQO6jPp79Sc6538e",
+        "id": "2UctIbLQO6jPp79Sc6538e",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb0ca4ab570ba6c328b55699b4",
+            "width": null
+          }
+        ],
+        "name": "TOUHOU カバー",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MTcsNzgwMWIzNWM0NDlkZWVmNzE5YmE5OTdmMTIyOWJiMWVlNGUyYjcwOQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/2UctIbLQO6jPp79Sc6538e/tracks",
+          "total": 13
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:2UctIbLQO6jPp79Sc6538e"
+      },
+      {
+        "collaborative": false,
+        "description": "Fav Touhou&#x27;s tastes",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/0KKb5DHlimbh4sV4p46Zk3"
+        },
+        "href": "https://api.spotify.com/v1/playlists/0KKb5DHlimbh4sV4p46Zk3",
+        "id": "0KKb5DHlimbh4sV4p46Zk3",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb4de0386bbf56cf184cff94de",
+            "width": null
+          }
+        ],
+        "name": "TOUHOU ケーキ",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MjksOTVhZDlkYmU3MDU1Y2NiOGY0YzBlNWY4ODlkMmVlMjc2Yzk4NWMwOA==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/0KKb5DHlimbh4sV4p46Zk3/tracks",
+          "total": 25
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:0KKb5DHlimbh4sV4p46Zk3"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/0aq1R8cW8UjjNW9QSLwHl1"
+        },
+        "href": "https://api.spotify.com/v1/playlists/0aq1R8cW8UjjNW9QSLwHl1",
+        "id": "0aq1R8cW8UjjNW9QSLwHl1",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2730a02f529649ccb42d94e8dcfab67616d0000b2731040d89e780cd8e0abbb77f8ab67616d0000b2731d3a91b3f6c42c5a13663eb4ab67616d0000b273ddec014074176d8b2a847c0f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2730a02f529649ccb42d94e8dcfab67616d0000b2731040d89e780cd8e0abbb77f8ab67616d0000b2731d3a91b3f6c42c5a13663eb4ab67616d0000b273ddec014074176d8b2a847c0f",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2730a02f529649ccb42d94e8dcfab67616d0000b2731040d89e780cd8e0abbb77f8ab67616d0000b2731d3a91b3f6c42c5a13663eb4ab67616d0000b273ddec014074176d8b2a847c0f",
+            "width": 60
+          }
+        ],
+        "name": "Canton & Mandarin Song good good",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MjYsOTU0MGQ3MGZmNGRlNWNkNzU1OGY3YzllOTIzZDFlMzEwYTAyMGZhNQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/0aq1R8cW8UjjNW9QSLwHl1/tracks",
+          "total": 23
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:0aq1R8cW8UjjNW9QSLwHl1"
+      },
+      {
+        "collaborative": false,
+        "description": "Melodic one",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/4XixNYoKRZV2opfdrfYJrz"
+        },
+        "href": "https://api.spotify.com/v1/playlists/4XixNYoKRZV2opfdrfYJrz",
+        "id": "4XixNYoKRZV2opfdrfYJrz",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbaa4798c7280ced79c8cdbb5b",
+            "width": null
+          }
+        ],
+        "name": "Instrumentalist",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MTIxLDk5NjM1NGI2NTAzN2UxNDQ0NGRhMDE3MGYzZjU4ODc2OTM0ZDg5NjM=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/4XixNYoKRZV2opfdrfYJrz/tracks",
+          "total": 75
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:4XixNYoKRZV2opfdrfYJrz"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/05EcCXhRzhdyVfEpx2fdbs"
+        },
+        "href": "https://api.spotify.com/v1/playlists/05EcCXhRzhdyVfEpx2fdbs",
+        "id": "05EcCXhRzhdyVfEpx2fdbs",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b27350f0e9f3fe510cfe42f5f2d9ab67616d0000b27355c82855070525581e2c6feeab67616d0000b273cbb64bd416bb225456100bbcab67616d0000b273f9796064d17ef3d507eddd02",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b27350f0e9f3fe510cfe42f5f2d9ab67616d0000b27355c82855070525581e2c6feeab67616d0000b273cbb64bd416bb225456100bbcab67616d0000b273f9796064d17ef3d507eddd02",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b27350f0e9f3fe510cfe42f5f2d9ab67616d0000b27355c82855070525581e2c6feeab67616d0000b273cbb64bd416bb225456100bbcab67616d0000b273f9796064d17ef3d507eddd02",
+            "width": 60
+          }
+        ],
+        "name": "Classical Music",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYsMjg1YTY1ZmUwMDhkOTc0NjJkMzBhOTM0NmU1ODY3NTBlZGE5YmFlMw==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/05EcCXhRzhdyVfEpx2fdbs/tracks",
+          "total": 12
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:05EcCXhRzhdyVfEpx2fdbs"
+      },
+      {
+        "collaborative": false,
+        "description": "Finally fixed a typo ",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/5EdcGVzE2AVh6XJQwrMZS2"
+        },
+        "href": "https://api.spotify.com/v1/playlists/5EdcGVzE2AVh6XJQwrMZS2",
+        "id": "5EdcGVzE2AVh6XJQwrMZS2",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb270cbf0c4bdcd016d44a83df",
+            "width": null
+          }
+        ],
+        "name": "English is a worldwide language",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MTIzLDlkM2EwNGMyNjlkZWM1NzdlM2Y2ZDA1YTBhZDkwNWMzYTY4ZmU2NGM=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/5EdcGVzE2AVh6XJQwrMZS2/tracks",
+          "total": 105
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:5EdcGVzE2AVh6XJQwrMZS2"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/27rzf0NWVCwA47iNeZ8z27"
+        },
+        "href": "https://api.spotify.com/v1/playlists/27rzf0NWVCwA47iNeZ8z27",
+        "id": "27rzf0NWVCwA47iNeZ8z27",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2732d9fd443d837e1c48a9dedffab67616d0000b2737950f065f3294d30783313d8ab67616d0000b273c596e08107f4cc8936141b7bab67616d0000b273d4549c0e601fbe7e8622a2f5",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2732d9fd443d837e1c48a9dedffab67616d0000b2737950f065f3294d30783313d8ab67616d0000b273c596e08107f4cc8936141b7bab67616d0000b273d4549c0e601fbe7e8622a2f5",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2732d9fd443d837e1c48a9dedffab67616d0000b2737950f065f3294d30783313d8ab67616d0000b273c596e08107f4cc8936141b7bab67616d0000b273d4549c0e601fbe7e8622a2f5",
+            "width": 60
+          }
+        ],
+        "name": "The Internationale",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MTEsOGNiNmM0ZDI0NDgzZTVmMTc5OGM4MmUxM2JiYWRlZDYyNTE5ZWY0Mg==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/27rzf0NWVCwA47iNeZ8z27/tracks",
+          "total": 9
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:27rzf0NWVCwA47iNeZ8z27"
+      },
+      {
+        "collaborative": false,
+        "description": "バブル景気の爆発→崩壊という激動の時代の中で、華やかに咲き誇った90年代音楽。\"小室ブーム\"をはじめとするメガヒットの連発, 先鋭化したヒップホップ、グランジ、そしてスパイス・ガールズのようなポップグループも出現した時代。",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWWNbVDKoV50L"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWWNbVDKoV50L",
+        "id": "37i9dQZF1DWWNbVDKoV50L",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003897f0c4b89b8ccb38f4b52a2",
+            "width": null
+          }
+        ],
+        "name": "My Generation: '90s",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTY0Njg5NzQ4OCwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWWNbVDKoV50L/tracks",
+          "total": 100
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DWWNbVDKoV50L"
+      },
+      {
+        "collaborative": false,
+        "description": "back numberのオール・タイム・ベスト。",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX8areMEHPwto"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX8areMEHPwto",
+        "id": "37i9dQZF1DX8areMEHPwto",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f000000035d01e142bea529f026fc643a",
+            "width": null
+          }
+        ],
+        "name": "This Is back number",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTYzMjg0MTIwMCwwMDAwMDAwOTAwMDAwMTdjMmNlYjcyM2UwMDAwMDE3Yjk5ZDAzOThi",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX8areMEHPwto/tracks",
+          "total": 54
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DX8areMEHPwto"
+      },
+      {
+        "collaborative": false,
+        "description": "Electrified jazz, complex beats and virtuoso playing. Cover: Chick Corea",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX0aSJooo0zWR"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX0aSJooo0zWR",
+        "id": "37i9dQZF1DX0aSJooo0zWR",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f000000037f8dc33e7cc60ccab311c9b3",
+            "width": null
+          }
+        ],
+        "name": "Fusion Fest",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTY0NDYwNjY5NSwwMDAwMDA0NzAwMDAwMTdlZWEzMmE3MGEwMDAwMDE3ZDk1ZTVkN2E3",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX0aSJooo0zWR/tracks",
+          "total": 97
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DX0aSJooo0zWR"
+      },
+      {
+        "collaborative": false,
+        "description": "Some old Japanese songs I enjoy listening to",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/27ZHnuTwsy9FgmtZQmSyhG"
+        },
+        "href": "https://api.spotify.com/v1/playlists/27ZHnuTwsy9FgmtZQmSyhG",
+        "id": "27ZHnuTwsy9FgmtZQmSyhG",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb62bf65fdb7da7ab4144b1b2e",
+            "width": null
+          }
+        ],
+        "name": "J-old-popish xD",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "NTYsNTdlNmRhNzYzMDQ4M2M1Mzc3ZGZkNjQzOTU4NWMzM2FiMzNkZmZmYQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/27ZHnuTwsy9FgmtZQmSyhG/tracks",
+          "total": 53
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:27ZHnuTwsy9FgmtZQmSyhG"
+      },
+      {
+        "collaborative": false,
+        "description": "Finally a KPOP playlist",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/4oWbTECzK3andSPsjsH0rF"
+        },
+        "href": "https://api.spotify.com/v1/playlists/4oWbTECzK3andSPsjsH0rF",
+        "id": "4oWbTECzK3andSPsjsH0rF",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb0a2299d28a1f2e75333775cf",
+            "width": null
+          }
+        ],
+        "name": "K-Pop",
+        "owner": {
+          "display_name": "yanaginx",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31pc7j23jfyejjm7ylexim6dfeyi"
+          },
+          "href": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi",
+          "id": "31pc7j23jfyejjm7ylexim6dfeyi",
+          "type": "user",
+          "uri": "spotify:user:31pc7j23jfyejjm7ylexim6dfeyi"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "NjIsYzE3OGNkMTEwZTRlMDUxZDgxMDIwMDdjYzUwOGNjMjBjMzNjNDA5ZQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/4oWbTECzK3andSPsjsH0rF/tracks",
+          "total": 29
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:4oWbTECzK3andSPsjsH0rF"
+      }
+    ],
+    "limit": 20,
+    "next": "https://api.spotify.com/v1/users/31pc7j23jfyejjm7ylexim6dfeyi/playlists?offset=20&limit=20",
+    "offset": 0,
+    "previous": null,
+    "total": 51
+  }
