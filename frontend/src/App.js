@@ -1,12 +1,11 @@
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 
 import SpotifyWebApi from "spotify-web-api-node";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import sidebarStyles from "./components/Sidebar.module.css";
 import Dashboard from "./pages/Dashboard";
 import Fer from "./pages/Fer";
 import Login from "./pages/Login";
@@ -132,17 +131,14 @@ function App() {
     console.log("[DEBUG] auth token on App: ", auth);
     return (
       <>
-        <Container
-          className="d-flex flex-column py-2"
-          style={{ height: "100vh" }}
-          fluid
-        >
-          <Router>
-            <Row>
-              <Col xs={2}>
+        {/* <Tab.Container id="left-tabs-example"> */}
+        <Router>
+          <Container style={{ height: "100vh" }}>
+            <Row style={{ height: "90%" }}>
+              <Col sm={3} style={{ height: "100%" }}>
                 <Sidebar />
               </Col>
-              <Col xs={10}>
+              <Col sm={9} style={{ height: "100%" }}>
                 <Routes>
                   <Route path="/" element={<Dashboard auth={auth} />} />
                   <Route path="/fer" element={<Fer auth={auth} />} />
@@ -154,17 +150,40 @@ function App() {
                 </Routes>
               </Col>
             </Row>
-            <div>
-              <Player
-                key={user_auth}
-                accessToken={auth}
-                trackUris={tracks[0]}
-              />
-            </div>
-          </Router>
-
-          <ToastContainer />
-        </Container>
+            <Row className="fixed-bottom">
+              <div>
+                <Player
+                  key={user_auth}
+                  accessToken={auth}
+                  trackUris={tracks[0]}
+                />
+              </div>
+            </Row>
+          </Container>
+        </Router>
+        {/* </Tab.Container> */}
+        {/* <Router>
+          <Row className="d-flex flex-column">
+            <Col xs={2} className="flex-grow-1 fixed-top">
+              <Sidebar />
+            </Col>
+            <Col xs={10} className="offset-2">
+              <Routes>
+                <Route path="/" element={<Dashboard auth={auth} />} />
+                <Route path="/fer" element={<Fer auth={auth} />} />
+                <Route path="/search" element={<Search auth={auth} />} />
+                <Route
+                  path="/my-playlist"
+                  element={<MyPlaylist auth={auth} />}
+                />
+              </Routes>
+            </Col>
+          </Row>
+          <div>
+            <Player key={user_auth} accessToken={auth} trackUris={tracks[0]} />
+          </div>
+        </Router> */}
+        <ToastContainer />
       </>
     );
   }

@@ -134,7 +134,7 @@ h3 {
   margin: 0 0 5px 3px;
 } */
 
-.btn {
+/* .btn {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
@@ -166,7 +166,7 @@ h3 {
 
 .btn:hover {
   transform: scale(0.98);
-}
+} */
 
 .loadingSpinnerContainer {
   position: fixed;

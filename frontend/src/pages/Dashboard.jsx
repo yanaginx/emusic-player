@@ -12,7 +12,7 @@ import {
 } from "../features/auth/authSlice";
 
 function Dashboard({ auth }) {
-  console.log("[DEBUG] auth can be seen from DASHBOARD: ", auth);
+  // console.log("[DEBUG] auth can be seen from DASHBOARD: ", auth);
 
   // // DEBUG
   // useEffect(() => {
@@ -42,7 +42,7 @@ function Dashboard({ auth }) {
         <h1>WELCOME</h1>
         <p>To Emusic</p>
       </section>
-      <Row>
+      <Row style={{ height: "100%" }}>
         <Col>
           <Button onClick={onFER}>Emotion detect</Button>
         </Col>
@@ -50,7 +50,7 @@ function Dashboard({ auth }) {
           <Button onClick={onSearch}>Search</Button>
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         {auth ? (
           <a href="/api/auth/logout">
             <button className="btn">LOGOUT SPOTIFY</button>
@@ -58,7 +58,7 @@ function Dashboard({ auth }) {
         ) : (
           <h3>You have not login yet</h3>
         )}
-      </Row>
+      </Row> */}
       {/* <a href={"/api/auth/login"}>
           <button className="btn">Login</button>
         </a> */}

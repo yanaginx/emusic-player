@@ -12,11 +12,11 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 function Search({ auth }) {
-  console.log("[DEBUG] auth can be seen from SEARCH: ", auth);
+  // console.log("[DEBUG] auth can be seen from SEARCH: ", auth);
   const dispatch = useDispatch();
   const { tracks } = useSelector((state) => state.track);
   const { user_auth } = useSelector((state) => state.auth);
-  console.log("[DEBUG] user_auth can be seen from SEARCH: ", user_auth);
+  // console.log("[DEBUG] user_auth can be seen from SEARCH: ", user_auth);
 
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -152,34 +152,30 @@ function Search({ auth }) {
 
   return (
     <>
-      <Row>
+      <Row className="m-2" style={{ height: "100%" }}>
         <Form.Control
           type="search"
           placeholder="Search Song/Artist"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         ></Form.Control>
-        <Col>
-          <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
-            {searchResults.map((track) => (
-              <TrackSearchResult
-                track={track}
-                key={track.uri}
-                chooseTrack={chooseTrack}
-              />
-            ))}
-          </div>
+        <Col style={{ height: "100%", overflowY: "auto" }}>
+          {searchResults.map((track) => (
+            <TrackSearchResult
+              track={track}
+              key={track.uri}
+              chooseTrack={chooseTrack}
+            />
+          ))}
         </Col>
-        <Col>
-          <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
-            {playlistSearchResults.map((playlist) => (
-              <PlaylistResult
-                playlist={playlist}
-                key={playlist.uri}
-                choosePlaylist={choosePlaylist}
-              />
-            ))}
-          </div>
+        <Col style={{ height: "100%", overflowY: "auto" }}>
+          {playlistSearchResults.map((playlist) => (
+            <PlaylistResult
+              playlist={playlist}
+              key={playlist.uri}
+              choosePlaylist={choosePlaylist}
+            />
+          ))}
         </Col>
       </Row>
     </>

@@ -14,7 +14,7 @@ function Player({ accessToken, trackUris }) {
   const [play, setPlay] = useState(false);
   const { user_auth } = useSelector((state) => state.auth);
 
-  console.log("[DEBUG] auth can be seen from PLAYER: ", user_auth);
+  // console.log("[DEBUG] auth can be seen from PLAYER: ", user_auth);
 
   useEffect(() => {
     if (trackUris) {
@@ -64,10 +64,10 @@ function Player({ accessToken, trackUris }) {
         showSaveIcon
         callback={(state) => {
           console.log("[DEBUG] Player state", state, new Date().toUTCString());
-          console.log(
-            "[DEBUG] Toggling isStateChange: before: ",
-            isStateChange
-          );
+          // console.log(
+          //   "[DEBUG] Toggling isStateChange: before: ",
+          //   isStateChange
+          // );
           setIsStateChange(!isStateChange);
           console.log("[DEBUG] Toggling isStateChange: after: ", isStateChange);
           if (state.error || state.errorType) {
