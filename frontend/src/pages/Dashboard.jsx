@@ -35,6 +35,15 @@ function Dashboard({ auth }) {
   const onSearch = () => {
     navigate("/search");
   };
+  const onHappyMood = () => {
+    navigate("/create-playlist/happy");
+  };
+  const onSadMood = () => {
+    navigate("/create-playlist/sad");
+  };
+  const onAngryMood = () => {
+    navigate("/create-playlist/angry");
+  };
 
   return (
     <>
@@ -42,7 +51,7 @@ function Dashboard({ auth }) {
         <h1>WELCOME</h1>
         <p>To Emusic</p>
       </section>
-      <Row style={{ height: "100%" }}>
+      <Row style={{ height: "50%" }}>
         <Col>
           <Button onClick={onFER}>Emotion detect</Button>
         </Col>
@@ -50,6 +59,19 @@ function Dashboard({ auth }) {
           <Button onClick={onSearch}>Search</Button>
         </Col>
       </Row>
+      {/* Test for create playlist with recommender */}
+      <Row style={{ height: "50%" }}>
+        <Col>
+          <Button onClick={onHappyMood}>Happy mood create</Button>
+        </Col>
+        <Col>
+          <Button onClick={onSadMood}>Sad mood create</Button>
+        </Col>
+        <Col>
+          <Button onClick={onAngryMood}>Angry mood create</Button>
+        </Col>
+      </Row>
+      {/* End : Test for create playlist with recommender */}
       {/* <Row>
         {auth ? (
           <a href="/api/auth/logout">

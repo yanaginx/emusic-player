@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 
 import SpotifyWebApi from "spotify-web-api-node";
-
+import "react-toastify/dist/ReactToastify.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Dashboard from "./pages/Dashboard";
 import Fer from "./pages/Fer";
@@ -15,6 +15,7 @@ import MyPlaylist from "./pages/MyPlaylist";
 import Spinner from "./components/Spinner";
 import Player from "./components/Player";
 import Sidebar from "./components/Sidebar";
+import CreateEmoPlaylist from "./pages/CreateEmoPlaylist";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -134,7 +135,7 @@ function App() {
         {/* <Tab.Container id="left-tabs-example"> */}
         <Router>
           <Container style={{ height: "100vh" }}>
-            <Row style={{ height: "90%" }}>
+            <Row style={{ height: "85%" }}>
               <Col sm={3} style={{ height: "100%" }}>
                 <Sidebar />
               </Col>
@@ -146,6 +147,10 @@ function App() {
                   <Route
                     path="/my-playlist"
                     element={<MyPlaylist auth={auth} />}
+                  />
+                  <Route
+                    path="/create-playlist/:mood"
+                    element={<CreateEmoPlaylist />}
                   />
                 </Routes>
               </Col>
