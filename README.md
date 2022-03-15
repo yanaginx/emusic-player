@@ -16,17 +16,15 @@
 
   ⇒ Passing the access_token as props and update when needed so i guess we still good to go
 
-- [ ] Using `spotify-web-api-node` :
-  - [ ] Playlist fetch
+- Using `spotify-web-api-node` :
+  - [x] Playlist fetch
   - [ ] Create playlist
   - [x] Search
     > Issues: Currently using new token will result in new playback device created → disrupting the music listening process. → Will find way to fix this
-    > Deadline on 13th March
 - [x] Build the routes for:
   - [x] FER
     > Deadline on 10th March
 - [ ] Initial UI, with fully functional components first
-  > Deadline on 13th March
 - [ ] Refined UI
 
 ---
