@@ -9,6 +9,7 @@ import SpotifyWebApi from "spotify-web-api-node";
 import { refreshAuthToken } from "../features/auth/authSlice";
 
 import QueryCard from "../components/QueryCard";
+import RecommendTrackResult from "../components/RecommendTrackResult";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -19,6 +20,7 @@ function CreateEmoPlaylist() {
   const { mood } = useParams();
   const { user_auth } = useSelector((state) => state.auth);
   const [seeds, setSeeds] = useState([]);
+  const [seedArtistPairs, setSeedArtistPairs] = useState({});
   const [searchString, setSearchString] = useState("");
   const [searchQueryList, setSearchQueryList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
@@ -31,6 +33,14 @@ function CreateEmoPlaylist() {
     if (!user_auth) return;
     spotifyApi.setAccessToken(user_auth);
   }, [user_auth]);
+
+  // DEBUG
+  useEffect(() => {
+    console.log("[DEBUG] seeds: ", seeds);
+    console.log(seedArtistPairs[seeds[0]]);
+    console.log("[DEBUG] seed & aritst pairs: ", seedArtistPairs);
+  }, [seeds, seedArtistPairs]);
+  // END : DEBUG
 
   // useEffect(() => {
   //   if (!user_auth) return;
@@ -58,7 +68,7 @@ function CreateEmoPlaylist() {
   // }, [user_auth, dispatch, seeds]);
 
   const addSeedQuery = () => {
-    let recommendSeeds = [...seeds];
+    // let recommendSeeds = [...seeds];
     if (searchString === "") {
       toast.error("Please enter a search query");
       return;
@@ -67,11 +77,17 @@ function CreateEmoPlaylist() {
       function (data) {
         console.log(`[DEBUG] Search artists by ${searchString}`, data.body);
         if (data.body.artists && data.body.artists.items.length > 0) {
-          recommendSeeds.push(data.body.artists.items[0].id);
-          setSeeds(recommendSeeds);
+          // recommendSeeds.push(data.body.artists.items[0].id);
+          if (seeds.length === 5) {
+            toast.error("You can only add maximum 5 artists");
+            return;
+          }
+          setSeeds([...seeds, data.body.artists.items[0].id]);
+          setSeedArtistPairs({
+            ...seedArtistPairs,
+            [data.body.artists.items[0].id]: data.body.artists.items[0].name,
+          });
           setSearchString("");
-          console.log("[DEBUG] current recommend seeds list: ", recommendSeeds);
-          console.log("[DEBUG] current seeds list: ", seeds);
         } else {
           toast.warning("No artist found with this query");
         }
@@ -83,6 +99,9 @@ function CreateEmoPlaylist() {
           err.toString().search("No token provided") !== -1 ||
           err.toString().search("The access token expired") !== -1
         ) {
+          toast.info(
+            "Token expired, refreshing token, please wait and try again later..."
+          );
           dispatch(refreshAuthToken());
         }
       }
@@ -104,22 +123,66 @@ function CreateEmoPlaylist() {
     console.log("[DEBUG] after remove: ", searchQueryList);
   };
 
-  const removeSeedQuery = (query) => {
-    setSeeds(seeds.filter((item) => item !== query));
-    console.log("[DEBUG] after remove: ", seeds);
+  const removeSeedQuery = (id) => {
+    let newSeedArtistPairs = seedArtistPairs;
+    delete newSeedArtistPairs[id];
+    setSeedArtistPairs(newSeedArtistPairs);
+    setSeeds(seeds.filter((item) => item !== id));
   };
 
   const getRecommendedTracks = async () => {
+    console.log("[DEBUG] current seeds in getRecommendedTracks: ", seeds);
+    let min_energy = 0;
+    let max_energy = 1;
+    switch (mood) {
+      case "happy":
+        min_energy = 0.5;
+        max_energy = 1;
+        console.log(`[DEBUG] min energy of mood ${mood} : ${min_energy}`);
+        break;
+      case "sad":
+        min_energy = 0.2;
+        max_energy = 0.5;
+        console.log(`[DEBUG] min energy of mood ${mood} : ${min_energy}`);
+        break;
+      case "angry":
+        min_energy = 0.7;
+        max_energy = 1;
+        console.log(`[DEBUG] min energy of mood ${mood} : ${min_energy}`);
+        break;
+      default:
+        break;
+    }
     spotifyApi
       .getRecommendations({
-        min_energy: 0.7,
+        min_energy: min_energy,
+        max_energy: max_energy,
         seed_artists: seeds,
-        min_popularity: 50,
+        // min_popularity: 50,
       })
       .then(
         function (data) {
-          let recommendations = data.body;
-          console.log(recommendations);
+          if (data.body.tracks) {
+            setTrackResults(
+              data.body.tracks.map((track) => {
+                const smallestAlbumImage = track.album.images.reduce(
+                  (smallest, image) => {
+                    if (image.height < smallest.height) return image;
+                    return smallest;
+                  }
+                );
+                return {
+                  artist: track.artists[0].name,
+                  title: track.name,
+                  uri: track.uri,
+                  albumUrl: smallestAlbumImage.url,
+                };
+              })
+            );
+          } else {
+            toast.warning("Cannot get recommendations, please try again");
+            return;
+          }
         },
         function (err) {
           console.log("[DEBUG] error in search: ", err);
@@ -129,6 +192,9 @@ function CreateEmoPlaylist() {
             err.toString().search("The access token expired") !== -1
           ) {
             console.log("[DEBUG] Refreshed here from Search box");
+            toast.info(
+              "Token expired, refreshing token, please wait and try again later..."
+            );
             dispatch(refreshAuthToken());
           }
         }
@@ -221,8 +287,20 @@ function CreateEmoPlaylist() {
   return (
     <>
       <h1>CreateEmoPlaylist for {mood} mood</h1>
-      <Row className="my-4">
-        <Col xs={10}>
+      <Row className="my-2">
+        <Col>
+          {seeds.map((id) => (
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => removeSeedQuery(id)}
+            >
+              <QueryCard key={id} name={seedArtistPairs[id]} />{" "}
+            </span>
+          ))}
+        </Col>
+      </Row>
+      <Row className="my-2">
+        <Col xs={8}>
           <Form.Control
             type="search"
             placeholder="Search Artists, seperated by ;"
@@ -230,24 +308,22 @@ function CreateEmoPlaylist() {
             onChange={(e) => setSearchString(e.target.value)}
           ></Form.Control>
         </Col>
-        <Col>
+        <Col xs={1}>
           <Button onClick={addSeedQuery}>
             <Add />
           </Button>
         </Col>
         <Col>
-          <Button onClick={searchArtistSeeds}>
-            <Search />
-          </Button>
+          <Button onClick={getRecommendedTracks}>Get recommendations</Button>
         </Col>
       </Row>
-      {/* <Row style={{ height: "100%" }}></Row> */}
-      <Row>
-        {seeds.map((query) => (
-          <div onClick={() => removeSeedQuery(query)}>
-            <QueryCard key={query} query={query} />
-          </div>
-        ))}
+
+      <Row style={{ height: "80%" }}>
+        <Col style={{ height: "100%", overflowY: "auto" }}>
+          {trackResults.map((track) => (
+            <RecommendTrackResult track={track} key={track.uri} />
+          ))}
+        </Col>
       </Row>
     </>
   );
