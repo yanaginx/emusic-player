@@ -40,7 +40,10 @@ function MyPlaylist({ auth }) {
       function (err) {
         console.log("[DEBUG] error in search: ", err);
         console.log("[DEBUG] error in search: ", typeof err);
-        if (err.toString().search("No token provided") !== -1) {
+        if (
+          err.toString().search("No token provided") !== -1 ||
+          err.toString().search("The access token expired") !== -1
+        ) {
           console.log("Refreshed here from Search box");
           dispatch(refreshAuthToken());
         }
@@ -83,7 +86,7 @@ function MyPlaylist({ auth }) {
       }
     );
     return () => {};
-  }, [user_auth, myInfo]);
+  }, [user_auth, myInfo, dispatch]);
 
   return (
     <>

@@ -7,9 +7,11 @@ import { Col, Container, Form, Row, Button } from "react-bootstrap";
 import { Search, Add } from "@material-ui/icons";
 import SpotifyWebApi from "spotify-web-api-node";
 import { refreshAuthToken } from "../features/auth/authSlice";
+import { setTrackList, reset } from "../features/track/trackSlice";
 
 import QueryCard from "../components/QueryCard";
 import RecommendTrackResult from "../components/RecommendTrackResult";
+import SelectedTrack from "../components/SelectedTrack";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -23,9 +25,22 @@ function CreateEmoPlaylist() {
   const [seedArtistPairs, setSeedArtistPairs] = useState({});
   const [searchString, setSearchString] = useState("");
   const [searchQueryList, setSearchQueryList] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
   const [trackResults, setTrackResults] = useState([]);
-  const [selectedArtists, setSelectedArtists] = useState([]);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
+
+  function chooseTrack(track) {
+    dispatch(setTrackList([track?.uri]));
+    // setPlayingTrack(track);
+  }
+
+  function unselectToPlaylist(track) {
+    const newTrackList = playlistTracks.filter((t) => t.uri !== track.uri);
+    setPlaylistTracks(newTrackList);
+  }
+
+  function selectToPlaylist(track) {
+    setPlaylistTracks([...playlistTracks, track]);
+  }
 
   console.log("[DEBUG] user_auth can be seen from MY-PLAYLIST: ", user_auth);
 
@@ -39,7 +54,8 @@ function CreateEmoPlaylist() {
     console.log("[DEBUG] seeds: ", seeds);
     console.log(seedArtistPairs[seeds[0]]);
     console.log("[DEBUG] seed & aritst pairs: ", seedArtistPairs);
-  }, [seeds, seedArtistPairs]);
+    console.log("[DEBUG] playlist tracks: ", playlistTracks);
+  }, [seeds, seedArtistPairs, playlistTracks]);
   // END : DEBUG
 
   // useEffect(() => {
@@ -108,21 +124,6 @@ function CreateEmoPlaylist() {
     );
   };
 
-  const addSearchQuery = () => {
-    if (searchString === "") {
-      toast.error("Please enter a search query");
-      return;
-    }
-    setSearchQueryList([...searchQueryList, searchString]);
-    console.log("[DEBUG] after add: ", searchQueryList);
-    setSearchString("");
-  };
-
-  const removeSearchQuery = (value) => {
-    setSearchQueryList(searchQueryList.filter((item) => item !== value));
-    console.log("[DEBUG] after remove: ", searchQueryList);
-  };
-
   const removeSeedQuery = (id) => {
     let newSeedArtistPairs = seedArtistPairs;
     delete newSeedArtistPairs[id];
@@ -153,16 +154,23 @@ function CreateEmoPlaylist() {
       default:
         break;
     }
+    if (seeds.length < 1) {
+      toast.error("Please add at least one seed artist");
+      return;
+    }
     spotifyApi
       .getRecommendations({
-        min_energy: min_energy,
-        max_energy: max_energy,
+        // min_energy: min_energy,
+        // max_energy: max_energy,
         seed_artists: seeds,
         // min_popularity: 50,
+        limit: 40,
+        market: "VN",
       })
       .then(
         function (data) {
           if (data.body.tracks) {
+            console.log("[DEBUG] recommendations: ", data.body);
             setTrackResults(
               data.body.tracks.map((track) => {
                 const smallestAlbumImage = track.album.images.reduce(
@@ -176,6 +184,7 @@ function CreateEmoPlaylist() {
                   title: track.name,
                   uri: track.uri,
                   albumUrl: smallestAlbumImage.url,
+                  previewUrl: track.preview_url,
                 };
               })
             );
@@ -199,89 +208,6 @@ function CreateEmoPlaylist() {
           }
         }
       );
-  };
-
-  const searchArtistSeeds = async () => {
-    let recommendSeeds = [];
-    let searchArtistresults = [];
-
-    if (searchString === "") {
-      return;
-    }
-    let subSearchQuery = searchString.split(";");
-    console.log("[DEBUG] split search string: ", subSearchQuery);
-    if (subSearchQuery.length > 5) {
-      toast.error("Please enter a maximum of 5 artists");
-      return;
-    }
-    for (let i = 0; i < subSearchQuery.length; i++) {
-      let searchQuery = subSearchQuery[i];
-      if (searchQuery.length <= 0) continue;
-      spotifyApi.searchArtists(searchQuery, { limit: 1 }).then(
-        function (data) {
-          console.log(`[DEBUG] Search artists by ${searchQuery}`, data.body);
-          if (data.body.artists && data.body.artists.items.length > 0) {
-            searchArtistresults.push(data.body.artists.items[0]);
-            recommendSeeds.push(data.body.artists.items[0].id);
-          }
-        },
-        function (err) {
-          console.log("[DEBUG] error in search: ", err);
-          console.log("[DEBUG] error in search: ", typeof err);
-          if (
-            err.toString().search("No token provided") !== -1 ||
-            err.toString().search("The access token expired") !== -1
-          ) {
-            console.log("[DEBUG] Refreshed here from Search box");
-            dispatch(refreshAuthToken());
-          }
-        }
-      );
-    }
-    // console.log("[DEBUG] Sub query artists: ", recommendSeeds);
-    setSeeds(recommendSeeds);
-    console.log("[DEBUG] Artists' seed: ", seeds);
-    // console.log("[DEBUG] Artists' seed type: ", typeof seeds);
-    setSearchResults(searchArtistresults);
-  };
-
-  const searchForArtists = async () => {
-    let recommendSeeds = [];
-    let searchArtistresults = [];
-
-    if (searchString === "") {
-      return;
-    }
-    let subSearchQuery = searchString.split(";");
-    console.log("[DEBUG] split search string: ", subSearchQuery);
-    if (subSearchQuery.length > 5 || subSearchQuery.length < 1) {
-      toast.error(
-        "Please enter a maximum of 5 artists and a mimimum of 1, seperated by ;"
-      );
-      return;
-    }
-    for (let i = 0; i < subSearchQuery.length; i++) {
-      const searchQuery = encodeURIComponent(subSearchQuery[i]);
-      if (searchQuery.length <= 0) continue;
-      const typeQuery = `type=artist`;
-      const { data } = await axios.get(
-        `https://api.spotify.com/v1/search?q=${searchQuery}&${typeQuery}&limit=1`,
-        {
-          headers: {
-            Authorization: `Bearer ${user_auth}`,
-          },
-        }
-      );
-      if (data && data.artists) {
-        searchArtistresults.push(data.artists.items[0]);
-        recommendSeeds.push(data.artists.items[0].id);
-      }
-    }
-    console.log("[DEBUG] Sub query artists: ", recommendSeeds);
-    setSeeds(recommendSeeds);
-    console.log("[DEBUG] Artists' seed: ", seeds);
-    console.log("[DEBUG] Artists' seed type: ", typeof seeds);
-    setSearchResults(searchArtistresults);
   };
 
   return (
@@ -321,7 +247,21 @@ function CreateEmoPlaylist() {
       <Row style={{ height: "80%" }}>
         <Col style={{ height: "100%", overflowY: "auto" }}>
           {trackResults.map((track) => (
-            <RecommendTrackResult track={track} key={track.uri} />
+            <RecommendTrackResult
+              track={track}
+              key={track.uri}
+              chooseTrack={chooseTrack}
+              selectToPlaylist={selectToPlaylist}
+            />
+          ))}
+        </Col>
+        <Col style={{ height: "100%", overflowY: "auto" }}>
+          {playlistTracks.map((track) => (
+            <SelectedTrack
+              track={track}
+              key={track.uri}
+              unselectToPlaylist={unselectToPlaylist}
+            />
           ))}
         </Col>
       </Row>
