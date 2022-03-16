@@ -44,6 +44,12 @@ function Dashboard({ auth }) {
   const onAngryMood = () => {
     navigate("/create-playlist/angry");
   };
+  const onNeutralMood = () => {
+    navigate("/create-playlist/neutral");
+  };
+  const onSurpriseMood = () => {
+    navigate("/create-playlist/surprise");
+  };
 
   return (
     <>
@@ -69,6 +75,12 @@ function Dashboard({ auth }) {
         </Col>
         <Col>
           <Button onClick={onAngryMood}>Angry mood create</Button>
+        </Col>
+        <Col>
+          <Button onClick={onNeutralMood}>Neutral mood create</Button>
+        </Col>
+        <Col>
+          <Button onClick={onSurpriseMood}>Surprise mood create</Button>
         </Col>
       </Row>
       {/* End : Test for create playlist with recommender */}
