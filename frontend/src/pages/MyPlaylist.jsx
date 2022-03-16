@@ -34,7 +34,10 @@ function MyPlaylist({ auth }) {
 
     spotifyApi.getMe().then(
       function (data) {
-        console.log("Some information about the authenticated user", data.body);
+        console.log(
+          "[DEBUG] Some information about the authenticated user",
+          data.body
+        );
         setMyInfo(data.body);
       },
       function (err) {
@@ -55,17 +58,19 @@ function MyPlaylist({ auth }) {
     if (!user_auth) return;
     if (!myInfo) return;
 
-    console.log("[DEBUG] my info: ", myInfo);
+    // console.log("[DEBUG] my info: ", myInfo);
     spotifyApi.getUserPlaylists(myInfo.id).then(
       (res) => {
+        console.log("[DEBUG] playlist results: ", res.body);
         setPlaylistResults(
           res.body.items.map((playlist) => {
-            const smallestAlbumImage = playlist.images.reduce(
-              (smallest, image) => {
+            let smallestAlbumImage = "";
+            if (playlist.images.length > 0) {
+              smallestAlbumImage = playlist.images.reduce((smallest, image) => {
                 if (image.height < smallest.height) return image;
                 return smallest;
-              }
-            );
+              });
+            }
             return {
               owner: playlist.owner.display_name,
               name: playlist.name,
@@ -74,12 +79,15 @@ function MyPlaylist({ auth }) {
             };
           })
         );
-        console.log("[DEBUG] playlist results: ", res.body);
+        // console.log("[DEBUG] playlist results: ", res.body);
       },
       (err) => {
         console.log("[DEBUG] error in search: ", err);
         console.log("[DEBUG] error in search: ", typeof err);
-        if (err.toString().search("No token provided") !== -1) {
+        if (
+          err.toString().search("No token provided") !== -1 ||
+          err.toString().search("The access token expired") !== -1
+        ) {
           console.log("Refreshed here from Search box");
           dispatch(refreshAuthToken());
         }

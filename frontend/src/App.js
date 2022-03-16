@@ -32,7 +32,7 @@ import logo from "./logo.svg";
 // });
 
 function App() {
-  console.log("[DEBUG] App.js is also re rendered");
+  // console.log("[DEBUG] App.js is also re rendered");
   const dispatch = useDispatch();
 
   const [auth, setAuth] = useState(null);
@@ -64,7 +64,7 @@ function App() {
 
   useEffect(() => {
     axios.get("/api/auth/current-session").then((res) => {
-      console.log("[DEBUG] data received from server: ", res.data);
+      // console.log("[DEBUG] data received from server: ", res.data);
       if (res.data.access_token) {
         // console.log("[DEBUG] token fetched: ", res.data.access_token);
         // console.log("[DEBUG] The time: ", Date.now() - res.data.iat);
@@ -127,9 +127,9 @@ function App() {
   // }, [auth]);
 
   if (auth) {
-    console.log("[DEBUG] user_auth in state: ", user_auth);
+    // console.log("[DEBUG] user_auth in state: ", user_auth);
     // const auth = user_auth.access_token;
-    console.log("[DEBUG] auth token on App: ", auth);
+    // console.log("[DEBUG] auth token on App: ", auth);
     return (
       <>
         {/* <Tab.Container id="left-tabs-example"> */}

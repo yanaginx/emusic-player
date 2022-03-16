@@ -18,7 +18,7 @@ function Player({ accessToken, trackUris }) {
 
   useEffect(() => {
     if (trackUris) {
-      console.log("[DEBUG] current track URIs: ", trackUris);
+      // console.log("[DEBUG] current track URIs: ", trackUris);
       setPlay(true);
     }
   }, [trackUris]);
@@ -34,22 +34,22 @@ function Player({ accessToken, trackUris }) {
 
   useEffect(() => {
     if (!trackUris) return;
-    console.log("[DEBUG] state change and this ran in Player: ", user_auth);
+    // console.log("[DEBUG] state change and this ran in Player: ", user_auth);
     // Get the User's Currently Playing Track
     spotifyApi.getMyCurrentPlayingTrack().then(
       function (data) {
-        console.log("[DEBUG] Now playing: " + data.body);
+        // console.log("[DEBUG] Now playing: " + data.body);
         // console.log(data.body.item?.name);
         // console.log("Now playing details: " + data.body.item);
       },
       function (err) {
-        console.log("[DEBUG] Something went wrong!", err);
+        // console.log("[DEBUG] Something went wrong!", err);
         // dispatch(refreshAuthToken());
         if (
           err.toString().search("No token provided") !== -1 ||
           err.toString().search("The access token expired") !== -1
         ) {
-          console.log("[DEBUG] Refreshed here from top Player");
+          // console.log("[DEBUG] Refreshed here from top Player");
           dispatch(refreshAuthToken());
         }
       }
@@ -63,25 +63,25 @@ function Player({ accessToken, trackUris }) {
         token={user_auth}
         showSaveIcon
         callback={(state) => {
-          console.log("[DEBUG] Player state", state, new Date().toUTCString());
+          // console.log("[DEBUG] Player state", state, new Date().toUTCString());
           // console.log(
           //   "[DEBUG] Toggling isStateChange: before: ",
           //   isStateChange
           // );
           setIsStateChange(!isStateChange);
-          console.log("[DEBUG] Toggling isStateChange: after: ", isStateChange);
+          // console.log("[DEBUG] Toggling isStateChange: after: ", isStateChange);
           if (state.error || state.errorType) {
-            console.log(
-              "[DEBUG] error && errorType: ",
-              state.error,
-              state.errorType
-            );
+            // console.log(
+            //   "[DEBUG] error && errorType: ",
+            //   state.error,
+            //   state.errorType
+            // );
           }
           if (state.error) {
-            console.log(state.errorType);
-            console.log(
-              "[DEBUG] refreshed here from inside state's callback of Player"
-            );
+            // console.log(state.errorType);
+            // console.log(
+            //   "[DEBUG] refreshed here from inside state's callback of Player"
+            // );
             dispatch(refreshAuthToken());
           }
           if (!state.isPlaying) setPlay(false);

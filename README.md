@@ -18,7 +18,8 @@
 
 - Using `spotify-web-api-node` :
   - [x] Playlist fetch
-  - [ ] Create playlist
+  - [x] Create playlist with given artist's seeds (5 seeds)
+    > Will consider adding genre seeds also, but this will reduce the available seed slots for artist
   - [x] Search
     > Issues: Currently using new token will result in new playback device created → disrupting the music listening process. → Will find way to fix this
 - [x] Build the routes for:

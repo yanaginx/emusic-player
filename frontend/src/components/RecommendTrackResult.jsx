@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { PlayCircleFilled, AddCircleTwoTone } from "@material-ui/icons";
+import { PlayCircleFilled, Remove } from "@material-ui/icons";
 
 // function RecommendTrackResult({ track }) {
-function RecommendTrackResult({ track, chooseTrack, selectToPlaylist }) {
+function RecommendTrackResult({ track, chooseTrack, unselectToPlaylist }) {
   // const useAudio = (url) => {
   //   const [audio] = useState(new Audio(url));
   //   const [playing, setPlaying] = useState(false);
@@ -58,8 +58,8 @@ function RecommendTrackResult({ track, chooseTrack, selectToPlaylist }) {
     chooseTrack(track);
   }
 
-  function handleSelect() {
-    selectToPlaylist(track);
+  function handleUnselect() {
+    unselectToPlaylist(track);
   }
 
   return (
@@ -76,16 +76,16 @@ function RecommendTrackResult({ track, chooseTrack, selectToPlaylist }) {
           <PlayCircleFilled fontSize="large" />
         </span>
         <img src={track.albumUrl} style={{ height: "64px", width: "64px" }} />
-        <div className="mx-3">
+        <div className="mx-3" style={{ width: "80%" }}>
           <div>{track.title}</div>
           <div className="text-muted">{track.artist}</div>
         </div>
         <span
           className="mx-2"
           style={{ cursor: "pointer" }}
-          onClick={handleSelect}
+          onClick={handleUnselect}
         >
-          <AddCircleTwoTone fontSize="large" />
+          <Remove fontSize="large" />
         </span>
       </div>
     </>

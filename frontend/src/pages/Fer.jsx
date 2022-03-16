@@ -13,7 +13,7 @@ function Fer({ auth }) {
     (state) => state.fer
   );
 
-  console.log("[DEBUG] auth can be seen from FER: ", auth);
+  // console.log("[DEBUG] auth can be seen from FER: ", auth);
 
   useEffect(() => {
     if (isError) {

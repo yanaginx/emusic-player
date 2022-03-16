@@ -86,12 +86,15 @@ function Search({ auth }) {
         if (cancel) return;
         setSearchResults(
           res.body.tracks.items.map((track) => {
-            const smallestAlbumImage = track.album.images.reduce(
-              (smallest, image) => {
-                if (image.height < smallest.height) return image;
-                return smallest;
-              }
-            );
+            let smallestAlbumImage = "";
+            if (track.album.images.length > 0) {
+              smallestAlbumImage = track.album.images.reduce(
+                (smallest, image) => {
+                  if (image.height < smallest.height) return image;
+                  return smallest;
+                }
+              );
+            }
             return {
               artist: track.artists[0].name,
               title: track.name,
@@ -108,7 +111,7 @@ function Search({ auth }) {
           err.toString().search("No token provided") !== -1 ||
           err.toString().search("The access token expired") !== -1
         ) {
-          console.log("[DEBUG] Refreshed here from Search box");
+          // console.log("[DEBUG] Refreshed here from Search box");
           dispatch(refreshAuthToken());
         }
       }
@@ -119,12 +122,13 @@ function Search({ auth }) {
         if (cancel) return;
         setPlaylistSearchResults(
           res.body.playlists.items.map((playlist) => {
-            const smallestAlbumImage = playlist.images.reduce(
-              (smallest, image) => {
+            let smallestAlbumImage = "";
+            if (playlist.images.length > 0) {
+              smallestAlbumImage = playlist.images.reduce((smallest, image) => {
                 if (image.height < smallest.height) return image;
                 return smallest;
-              }
-            );
+              });
+            }
             return {
               owner: playlist.owner.display_name,
               name: playlist.name,
@@ -133,7 +137,7 @@ function Search({ auth }) {
             };
           })
         );
-        console.log("[DEBUG] playlist results: ", res.body);
+        // console.log("[DEBUG] playlist results: ", res.body);
       },
       (err) => {
         console.log("[DEBUG] error in search: ", err);
@@ -142,7 +146,7 @@ function Search({ auth }) {
           err.toString().search("No token provided") !== -1 ||
           err.toString().search("The access token expired") !== -1
         ) {
-          console.log("[DEBUG] Refreshed here from Search box");
+          // console.log("[DEBUG] Refreshed here from Search box");
           dispatch(refreshAuthToken());
         }
       }
