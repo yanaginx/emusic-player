@@ -6,6 +6,7 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-node";
 import "react-toastify/dist/ReactToastify.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import Fer from "./pages/Fer";
 import Login from "./pages/Login";

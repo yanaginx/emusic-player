@@ -4,6 +4,8 @@ import { Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrackList, reset } from "../features/track/trackSlice";
 import { refreshAuthToken } from "../features/auth/authSlice";
+
+import CustomPagination from "../components/CustomPagination";
 import PlaylistResult from "../components/PlaylistResult";
 
 const spotifyApi = new SpotifyWebApi({
@@ -18,6 +20,8 @@ function MyPlaylist({ auth }) {
 
   const [playlistResults, setPlaylistResults] = useState([]);
   const [myInfo, setMyInfo] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [playlistsPerPage, setPlaylistsPerPage] = useState(8);
 
   function choosePlaylist(playlist) {
     dispatch(setTrackList([playlist?.uri]));
@@ -178,11 +182,22 @@ function MyPlaylist({ auth }) {
   //   return () => {};
   // }, [user_auth, myInfo, dispatch]);
 
+  // Get current playlists
+  const indexOfLastPlaylist = currentPage * playlistsPerPage;
+  const indexOfFirstPlaylist = indexOfLastPlaylist - playlistsPerPage;
+  const currentPlaylists = playlistResults.slice(
+    indexOfFirstPlaylist,
+    indexOfLastPlaylist
+  );
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
-      <Row className="m-2" style={{ height: "100%" }}>
+      <Row className="m-2" style={{ height: "95%" }}>
         <Col style={{ height: "100%", overflowY: "auto" }}>
-          {playlistResults.map((playlist) => (
+          {currentPlaylists.map((playlist) => (
             <PlaylistResult
               playlist={playlist}
               key={playlist.uri}
@@ -190,6 +205,14 @@ function MyPlaylist({ auth }) {
             />
           ))}
         </Col>
+      </Row>
+      <Row>
+        <CustomPagination
+          totalItems={playlistResults.length}
+          itemsPerPage={playlistsPerPage}
+          activePage={currentPage}
+          paginate={paginate}
+        ></CustomPagination>
       </Row>
     </>
   );

@@ -54,7 +54,7 @@ function Dashboard({ auth }) {
   return (
     <>
       <section className="heading">
-        <h1>WELCOME</h1>
+        <h1 className="text-primary mb-3">WELCOME</h1>
         <p>To Emusic</p>
       </section>
       <Row style={{ height: "50%" }}>

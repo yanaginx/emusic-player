@@ -262,7 +262,7 @@ function CreateEmoPlaylist() {
 
   return (
     <>
-      <h1>CreateEmoPlaylist for {mood} mood</h1>
+      <h1 className="text-primary mb-3">CreateEmoPlaylist for {mood} mood</h1>
       <Row className="my-2">
         <Col>
           {seeds.map((id) => (
