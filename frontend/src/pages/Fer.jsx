@@ -9,6 +9,7 @@ import { setTrackList } from "../features/track/trackSlice";
 import { refreshAuthToken } from "../features/auth/authSlice";
 
 import Spinner from "../components/Spinner";
+import { Button } from "react-bootstrap";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -30,6 +31,10 @@ function Fer({ auth }) {
   const [myInfo, setMyInfo] = useState(null);
 
   console.log("[DEBUG] auth can be seen from FER: ", user_auth);
+
+  const onMood = (emotion) => {
+    navigate(`/create-playlist/${emotion}`);
+  };
 
   useEffect(() => {
     if (!user_auth) return;
@@ -71,6 +76,54 @@ function Fer({ auth }) {
   }, [message, isError, dispatch]);
 
   useEffect(() => {
+    if (!user_auth) return;
+    if (!myInfo) return;
+
+    const findPlaylist = async (emoPlaylistName) => {
+      const allPlaylists = (
+        await spotifyApi.getUserPlaylists(myInfo.id, { limit: 50 })
+      ).body;
+
+      // Fetch all available playlists
+      if (allPlaylists.total > allPlaylists.limit) {
+        // Divide the total number of playlist by the limit to get the number of API calls
+        for (
+          let i = 1;
+          i < Math.ceil(allPlaylists.total / allPlaylists.limit);
+          i++
+        ) {
+          const playlistToAdd = (
+            await spotifyApi.getUserPlaylists(myInfo.id, {
+              limit: allPlaylists.limit,
+              offset: i * allPlaylists.limit,
+            })
+          ).body;
+
+          playlistToAdd.items.forEach((item) => allPlaylists.items.push(item));
+        }
+      }
+      // console.log("[DEBUG] all playlists: ", allPlaylists);
+      // setPlaylistResults(allPlaylists);
+      const playlistResults = allPlaylists.items.map((playlist) => {
+        return {
+          name: playlist.name,
+          uri: playlist.uri,
+        };
+      });
+      console.log("[DEBUG] playlistResults: ", playlistResults);
+
+      // Find the playlist with the name of the emotion
+      const playlist = playlistResults.find(
+        (playlist) => playlist.name === emoPlaylistName
+      );
+
+      if (playlist) {
+        console.log("[DEBUG] playlist found: ", playlist.uri);
+        setMoodPlaylist([playlist.uri]);
+        setIsCreated(true);
+      }
+    };
+
     if (isSuccess) {
       let primaryEmotion = emotions.find((o) => {
         return (
@@ -87,29 +140,33 @@ function Fer({ auth }) {
         "[DEBUG] The primary emotion: ",
         primaryEmotion?.id.toLowerCase()
       );
-      // Find the playlist according to the primary emotion, if not create one
-      if (!user_auth) return;
-      if (!myInfo) return;
-
-      // console.log("[DEBUG] my info: ", myInfo);
-      spotifyApi.getUserPlaylists(myInfo.id, { limit: 50 }).then(
-        (res) => {
-          console.log("[DEBUG] playlist results: ", res.body);
-        },
-        (err) => {
-          console.log("[DEBUG] error in search: ", err);
-          console.log("[DEBUG] error in search: ", typeof err);
-          if (
-            err.toString().search("No token provided") !== -1 ||
-            err.toString().search("The access token expired") !== -1
-          ) {
-            console.log("Refreshed here from Search box");
-            dispatch(refreshAuthToken());
-          }
+      setPrimaryEmo(primaryEmotion?.id.toLowerCase());
+      const playlistName = `Emusic - ${primaryEmotion.id.toLowerCase()} mood playlist`;
+      findPlaylist(playlistName).catch((err) => {
+        console.log("[DEBUG] error in search: ", err);
+        console.log("[DEBUG] error in search: ", typeof err);
+        if (
+          err.toString().search("No token provided") !== -1 ||
+          err.toString().search("The access token expired") !== -1
+        ) {
+          dispatch(refreshAuthToken());
         }
-      );
+      });
     }
   }, [emotions, user_auth, myInfo, dispatch]);
+
+  useEffect(() => {
+    if (!moodPlaylist) return;
+
+    dispatch(setTrackList(moodPlaylist));
+  }, [moodPlaylist]);
+
+  // DEBUG
+  useEffect(() => {
+    console.log("[DEBUG] isCreated: ", isCreated);
+    console.log("[DEBUG] moodPlaylist: ", moodPlaylist);
+  }, [isCreated, moodPlaylist]);
+  // END : DEBUG
 
   if (isLoading) {
     return <Spinner />;
@@ -129,6 +186,19 @@ function Fer({ auth }) {
             </li>
           ))}
         </ul>
+        {isCreated ? (
+          <></>
+        ) : (
+          <>
+            <p>
+              No playlist created yet, wanna create your own {primaryEmo}
+              mood playlist? Click the button down below
+            </p>
+            <Button onClick={() => onMood(primaryEmo)}>
+              Create {primaryEmo} mood playlist{" "}
+            </Button>
+          </>
+        )}
       </section>
     </>
   );

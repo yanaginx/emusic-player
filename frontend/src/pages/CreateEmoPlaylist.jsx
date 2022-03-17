@@ -137,10 +137,10 @@ function CreateEmoPlaylist() {
   const createPlaylist = async () => {
     spotifyApi
       // .createPlaylist(`${mood} mood on ${new Date().toTimeString()}`, {
-      .createPlaylist(`${mood} mood playlist created by Emusic`, {
+      .createPlaylist(`Emusic - ${mood} mood playlist`, {
         description: `This playlist is automatically created for ${mood} mood, with the following artist seeds: ${Object.values(
           seedArtistPairs
-        ).join(",")}`,
+        ).join(", ")}`,
         public: true,
       })
       .then(

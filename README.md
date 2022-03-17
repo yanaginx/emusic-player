@@ -25,8 +25,9 @@
 - [x] Build the routes for:
   - [x] FER
     > Deadline on 10th March
-- [ ] Pagination for playlist's tracks and fetch all the playlist for searching purpose
+- [x] Pagination for playlist's tracks and fetch all the playlist for searching purpose
   > Refer to this https://github.com/thelinmichael/spotify-web-api-node/issues/356#issuecomment-760781584 for more info
+- [x] Auto pick playlist based on mood recognized on fer route
 - [ ] Initial UI, with fully functional components first
 - [ ] Refined UI
 
