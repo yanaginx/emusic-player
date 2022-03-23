@@ -14,10 +14,12 @@ const setUserAuth = async (user_auth) => {
 const refreshAuthToken = async () => {
   const response = await axios.get(API_URL + "refresh-token");
 
-  if (response.data) {
-    localStorage.setItem("user_auth", JSON.stringify(response.data));
+  // if (response.data) {
+  //   localStorage.setItem("user_auth", JSON.stringify(response.data));
+  // }
+  if (response.data.access_token) {
+    return response.data.access_token;
   }
-
   return response.data;
 };
 

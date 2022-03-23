@@ -29,7 +29,7 @@ net = cv2.dnn.readNetFromCaffe(configFile, modelFile)
 conf_threshold = 0.5
 
 capture_duration = 8
-frame_rate = 15
+frame_rate = 10
 start_record_time = time.time()
 prev_time = time.time()
 labels = []
@@ -66,7 +66,7 @@ while (int(time.time() - start_record_time) < capture_duration):
                 box = detections[0, 0, i, 3:7] * \
                     np.array([width, height, width, height])
                 (x, y, w, h) = box.astype('int')
-                cv2.rectangle(frame, (x, y), (w, h), (255, 255, 0), 2)
+                # cv2.rectangle(frame, (x, y), (w, h), (255, 255, 0), 2)
                 gray_roi = gray[y:y+h, x:x+w]
 
                 if gray_roi.shape[0] == 0 or gray_roi.shape[1] == 0:
@@ -85,9 +85,9 @@ while (int(time.time() - start_record_time) < capture_duration):
                     predict = model.predict(roi)[0]
                     label = class_labels[predict.argmax()]
                     labels.append(label)
-                    label_position = (x, y - 20)
-                    cv2.putText(frame, label, label_position,
-                                cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
+                    # label_position = (x, y - 20)
+                    # cv2.putText(frame, label, label_position,
+                    # cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
 
         # cv2.imshow('Emotion :3', frame)
 

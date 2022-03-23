@@ -11,6 +11,8 @@ const loginUser = (req, res) => {
     response_type: "code",
     client_id: process.env.SPOTIFY_CLIENT_ID,
     redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
+    scope:
+      "streaming user-read-email user-read-private user-library-read user-library-modify user-read-playback-state user-modify-playback-state playlist-modify-private playlist-read-collaborative playlist-read-private playlist-modify-public",
   });
 
   res.redirect(AUTH_URL);
