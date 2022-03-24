@@ -1,5 +1,4 @@
 import { Nav, Row } from "react-bootstrap";
-import "./Sidebar.css";
 import { Link } from "react-router-dom";
 
 function Sidebar() {

@@ -6,7 +6,7 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-node";
 import "react-toastify/dist/ReactToastify.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./styles/App.css";
 import Dashboard from "./pages/Dashboard";
 import Fer from "./pages/Fer";
 import Login from "./pages/Login";
@@ -16,6 +16,7 @@ import MyPlaylist from "./pages/MyPlaylist";
 import Spinner from "./components/Spinner";
 import Player from "./components/Player";
 import Sidebar from "./components/Sidebar";
+import SpotifyPlayer from "./components/SpotifyPlayer";
 import CreateEmoPlaylist from "./pages/CreateEmoPlaylist";
 
 import { useState, useEffect } from "react";
@@ -41,93 +42,35 @@ function App() {
   const { tracks } = useSelector((state) => state.track);
   const { user_auth } = useSelector((state) => state.auth);
 
-  // useEffect(() => {
-  //   if (!playingTrack) return;
-  //   // Get the User's Currently Playing Track
-  //   spotifyApi.getMyCurrentPlayingTrack().then(
-  //     function (data) {
-  //       console.log("Now playing: " + data.body);
-  //       // console.log("Now playing details: " + data.body.item);
-  //     },
-  //     function (err) {
-  //       console.log("Something went wrong!", err);
-  //     }
-  //   );
-  // }, [playingTrack]);
-
-  // useEffect(() => {
-  //   if (!auth) return;
-  //   spotifyApi.setAccessToken(auth);
-  //   console.log(
-  //     "[DEBUG] The set access token is " + spotifyApi.getAccessToken()
-  //   );
-  // }, [auth]);
-
   useEffect(() => {
-    axios.get("/api/auth/current-session").then((res) => {
+    axios.get("/api/auth/access-token").then((res) => {
       // console.log("[DEBUG] data received from server: ", res.data);
       if (res.data.access_token) {
-        // console.log("[DEBUG] token fetched: ", res.data.access_token);
-        // console.log("[DEBUG] The time: ", Date.now() - res.data.iat);
-        // // Check if the token is expired
-        // if (Date.now() - res.data.iat < 3000 * 1000) {
-        //   console.log("[DEBUG] token is still valid");
-        //   setAuth(res.data.access_token);
-        //   // localStorage.setItem("access_token", res.data.access_token);
-        // } else {
-        //   // refresh the token
-        //   axios
-        //     .get("/api/auth/refresh-token")
-        //     .then((res) => {
-        //       if (res.status === 200) {
-        //         console.log("[DEBUG] token refreshed: ", res);
-        //         // fetch the new token
-        //         axios.get("/api/auth/current-session").then((res) => {
-        //           console.log("[DEBUG] data received from server: ", res.data);
-        //           if (res.data.access_token) {
-        //             console.log(
-        //               "[DEBUG] New token fetch: ",
-        //               res.data.access_token
-        //             );
-        //             setAuth(res.data.access_token);
-        //             // localStorage.setItem("access_token", res.data.access_token);
-        //           }
-        //         });
-        //       }
-        //     })
-        //     .catch(() => {
-        //       console.log("[DEBUG] token refresh failed");
-        //     });
-        // }
-        // Testing player only
-        dispatch(setAccessToken(res.data.access_token));
-        setAuth(res.data.access_token);
-        // END
+        console.log("[DEBUG] token fetched: ", res.data.access_token);
+        console.log("[DEBUG] The time: ", Date.now() - res.data.iat);
+        // Check if the token is expired
+        if (Date.now() - res.data.iat < 3000 * 1000) {
+          console.log("[DEBUG] token is still valid");
+          dispatch(setAccessToken(res.data.access_token));
+        } else {
+          // refresh the token
+          axios
+            .get("/api/auth/refresh-token")
+            .then((res) => {
+              if (res.status === 200) {
+                console.log("[DEBUG] token refreshed: ", res);
+                dispatch(setAccessToken(res.data.access_token));
+              }
+            })
+            .catch(() => {
+              console.log("[DEBUG] token refresh failed");
+            });
+        }
       }
     });
   }, [dispatch]);
 
-  // call refresh token route every 50 minutes
-  // useEffect(() => {
-  //   console.log("[DEBUG] REFRESHING TOKEN");
-  //   if (auth) {
-  //     const refreshTokenInterval = setInterval(() => {
-  //       axios.get("/api/auth/refresh-token").then((res) => {
-  //         console.log("[DEBUG] interval refresh: ", res);
-  //         console.log(
-  //           "[DEBUG] The interval refresh time: ",
-  //           new Date().toString()
-  //         );
-  //         setAuth(res.data.access_token);
-  //       });
-  //     }, 1000 * 50 * 60);
-  //     return () => {
-  //       clearInterval(refreshTokenInterval);
-  //     };
-  //   }
-  // }, [auth]);
-
-  if (auth) {
+  if (user_auth) {
     // console.log("[DEBUG] user_auth in state: ", user_auth);
     // const auth = user_auth.access_token;
     // console.log("[DEBUG] auth token on App: ", auth);
@@ -136,7 +79,7 @@ function App() {
         {/* <Tab.Container id="left-tabs-example"> */}
         <Router>
           <Container style={{ height: "100vh" }}>
-            <Row style={{ height: "85%" }}>
+            <Row style={{ height: "80%" }}>
               <Col sm={3} style={{ height: "100%" }}>
                 <Sidebar />
               </Col>
@@ -163,6 +106,7 @@ function App() {
                   accessToken={auth}
                   trackUris={tracks[0]}
                 /> */}
+                <SpotifyPlayer token={user_auth} />
               </div>
             </Row>
           </Container>

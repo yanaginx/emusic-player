@@ -9,7 +9,8 @@ import CustomPagination from "../components/CustomPagination";
 import PlaylistResult from "../components/PlaylistResult";
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
+  // clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientId: import.meta.env.SPOTIFY_CLIENT_ID,
 });
 
 function MyPlaylist({ auth }) {
@@ -37,6 +38,7 @@ function MyPlaylist({ auth }) {
   useEffect(() => {
     if (!user_auth) return;
     spotifyApi.setAccessToken(user_auth);
+    console.log("[DEBUG] jump here and set user_auth to: ", user_auth);
   }, [user_auth]);
 
   useEffect(() => {
@@ -57,8 +59,10 @@ function MyPlaylist({ auth }) {
           err.toString().search("No token provided") !== -1 ||
           err.toString().search("The access token expired") !== -1
         ) {
-          console.log("Refreshed here from Search box");
+          console.log("[DEBUG] Refreshed here from Search box");
+          console.log("[DEBUG] Current auth: ", user_auth);
           dispatch(refreshAuthToken());
+          console.log("[DEBUG] After refresh: ", user_auth);
         }
       }
     );

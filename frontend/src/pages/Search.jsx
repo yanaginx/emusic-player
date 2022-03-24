@@ -8,7 +8,8 @@ import { refreshAuthToken } from "../features/auth/authSlice";
 import PlaylistResult from "../components/PlaylistResult";
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
+  // clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientId: import.meta.env.SPOTIFY_CLIENT_ID,
 });
 
 function Search({ auth }) {
@@ -66,6 +67,7 @@ function Search({ auth }) {
   useEffect(() => {
     if (!user_auth) return;
     spotifyApi.setAccessToken(user_auth);
+    console.log("[DEBUG] jump here and set user_auth to: ", user_auth);
     // console.log("[DEBUG] accessToken from useAuth: ", accessToken);
     // console.log(
     //   "[DEBUG] The set access token is " + spotifyApi.getAccessToken()
@@ -112,7 +114,9 @@ function Search({ auth }) {
           err.toString().search("The access token expired") !== -1
         ) {
           // console.log("[DEBUG] Refreshed here from Search box");
+          console.log("[DEBUG] Current auth: ", user_auth);
           dispatch(refreshAuthToken());
+          console.log("[DEBUG] After refresh: ", user_auth);
         }
       }
     );
@@ -147,7 +151,9 @@ function Search({ auth }) {
           err.toString().search("The access token expired") !== -1
         ) {
           // console.log("[DEBUG] Refreshed here from Search box");
+          console.log("[DEBUG] Current auth: ", user_auth);
           dispatch(refreshAuthToken());
+          console.log("[DEBUG] After refresh: ", user_auth);
         }
       }
     );

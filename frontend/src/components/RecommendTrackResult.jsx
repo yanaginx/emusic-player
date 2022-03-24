@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { PlayCircleFilled, Remove } from "@material-ui/icons";
+import { FaPlayCircle } from "react-icons/fa";
+import { MdRemove } from "react-icons/md";
 
 // function RecommendTrackResult({ track }) {
 function RecommendTrackResult({ track, chooseTrack, unselectToPlaylist }) {
@@ -73,7 +74,7 @@ function RecommendTrackResult({ track, chooseTrack, unselectToPlaylist }) {
           style={{ cursor: "pointer" }}
           onClick={handlePlay}
         >
-          <PlayCircleFilled fontSize="large" />
+          <FaPlayCircle size={32} />
         </span>
         <img src={track.albumUrl} style={{ height: "64px", width: "64px" }} />
         <div className="mx-3" style={{ width: "80%" }}>
@@ -85,7 +86,7 @@ function RecommendTrackResult({ track, chooseTrack, unselectToPlaylist }) {
           style={{ cursor: "pointer" }}
           onClick={handleUnselect}
         >
-          <Remove fontSize="large" />
+          <MdRemove size={32} />
         </span>
       </div>
     </>

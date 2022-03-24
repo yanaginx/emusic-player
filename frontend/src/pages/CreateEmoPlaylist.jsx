@@ -4,17 +4,17 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Container, Form, Row, Button } from "react-bootstrap";
-import { Search, Add } from "@material-ui/icons";
 import SpotifyWebApi from "spotify-web-api-node";
 import { refreshAuthToken } from "../features/auth/authSlice";
 import { setTrackList, reset } from "../features/track/trackSlice";
 
+import { MdAdd } from "react-icons/md";
 import QueryCard from "../components/QueryCard";
 import RecommendTrackResult from "../components/RecommendTrackResult";
-import SelectedTrack from "../components/SelectedTrack";
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
+  // clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientId: import.meta.env.SPOTIFY_CLIENT_ID,
 });
 
 function CreateEmoPlaylist() {
@@ -49,16 +49,18 @@ function CreateEmoPlaylist() {
   useEffect(() => {
     if (!user_auth) return;
     spotifyApi.setAccessToken(user_auth);
+    console.log("[DEBUG] jump here and set user_auth to: ", user_auth);
   }, [user_auth]);
 
   // DEBUG
   useEffect(() => {
+    console.log("[DEBUG] current user_auth: ", user_auth);
     console.log("[DEBUG] seeds: ", seeds);
     console.log(seedArtistPairs[seeds[0]]);
     console.log("[DEBUG] seed & aritst pairs: ", seedArtistPairs);
     console.log("[DEBUG] playlist tracks: ", playlistTracks);
     console.log("[DEBUG] track results: ", trackResults);
-  }, [seeds, seedArtistPairs, playlistTracks, trackResults]);
+  }, [seeds, seedArtistPairs, playlistTracks, trackResults, user_auth]);
   // END : DEBUG
 
   // useEffect(() => {
@@ -121,7 +123,9 @@ function CreateEmoPlaylist() {
           toast.info(
             "Token expired, refreshing token, please wait and try again later..."
           );
+          console.log("[DEBUG] Current auth: ", user_auth);
           dispatch(refreshAuthToken());
+          console.log("[DEBUG] After refresh: ", user_auth);
         }
       }
     );
@@ -170,7 +174,9 @@ function CreateEmoPlaylist() {
             toast.info(
               "Token expired, refreshing token, please wait and try again later..."
             );
+            console.log("[DEBUG] Current auth: ", user_auth);
             dispatch(refreshAuthToken());
+            console.log("[DEBUG] After refresh: ", user_auth);
           }
         }
       );
@@ -254,7 +260,9 @@ function CreateEmoPlaylist() {
             toast.info(
               "Token expired, refreshing token, please wait and try again later..."
             );
+            console.log("[DEBUG] Current auth: ", user_auth);
             dispatch(refreshAuthToken());
+            console.log("[DEBUG] After refresh: ", user_auth);
           }
         }
       );
@@ -286,7 +294,7 @@ function CreateEmoPlaylist() {
         </Col>
         <Col xs={1}>
           <Button onClick={addSeedQuery}>
-            <Add />
+            <MdAdd size={24} />
           </Button>
         </Col>
         <Col>

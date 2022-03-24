@@ -5,7 +5,8 @@ import { refreshAuthToken } from "../features/auth/authSlice";
 import SpotifyWebApi from "spotify-web-api-node";
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
+  // clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientId: import.meta.env.SPOTIFY_CLIENT_ID,
 });
 
 function Player({ accessToken, trackUris }) {
