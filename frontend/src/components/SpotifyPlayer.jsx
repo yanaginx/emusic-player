@@ -2,7 +2,12 @@ import { useState, useEffect, useRef } from "react";
 
 import { styled, useTheme } from "@mui/material/styles";
 import { FaFastBackward, FaFastForward, FaPlay, FaPause } from "react-icons/fa";
-import { MdVolumeUp } from "react-icons/md";
+import {
+  MdVolumeUp,
+  MdVolumeDown,
+  MdVolumeMute,
+  MdVolumeOff,
+} from "react-icons/md";
 import {
   Stack,
   Slider,
@@ -83,7 +88,7 @@ function SpotifyPlayer(props) {
 
   useEffect(() => {
     if (!current_track) return;
-    setDuration(Math.ceil(current_track.duration_ms / 1000));
+    setDuration(Math.round(current_track.duration_ms / 1000));
   }, [current_track]);
 
   useEffect(() => {
@@ -140,7 +145,7 @@ function SpotifyPlayer(props) {
 
         console.log("[DEBUG] current track pos: ", state.position);
 
-        setPosition(Math.ceil(state.position / 1000));
+        setPosition(Math.round(state.position / 1000));
         setTrack(state.track_window.current_track);
         setIsPlaying(state.paused);
 
@@ -158,7 +163,19 @@ function SpotifyPlayer(props) {
   };
 
   const handleVolumeChange = (e, value) => {
+    if (!player) {
+      return;
+    }
     setVolume(value);
+    player.setVolume(value / 100);
+  };
+
+  const handlePositionChange = (e, value) => {
+    if (!player) {
+      return;
+    }
+    setPosition(value);
+    player.seek(value * 1000);
   };
 
   const formatDuration = (value) => {
@@ -171,6 +188,13 @@ function SpotifyPlayer(props) {
     <>
       <Widget>
         <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+          {/* Track and artist name */}
+          <Box sx={{ width: 300, overflow: "auto" }}>
+            <Typography variant="h6">{current_track.name}</Typography>
+            <Typography variant="button">
+              {current_track.artists[0].name}
+            </Typography>
+          </Box>
           {/* controllers */}
           <Stack direction="row" alignItems="center">
             <IconButton
@@ -207,7 +231,7 @@ function SpotifyPlayer(props) {
               min={0}
               step={1}
               max={duration}
-              onChange={(_, value) => setPosition(value)}
+              onChange={handlePositionChange}
               sx={{
                 height: 4,
                 "& .MuiSlider-thumb": {
@@ -246,7 +270,17 @@ function SpotifyPlayer(props) {
             sx={{ width: 150, mb: 1 }}
             alignItems="center"
           >
-            <MdVolumeUp size={32} />
+            {(() => {
+              if (volume === 0) {
+                return <MdVolumeOff size={24} />;
+              } else if (volume > 0 && volume <= 25) {
+                return <MdVolumeMute size={24} />;
+              } else if (volume > 25 && volume <= 75) {
+                return <MdVolumeDown size={24} />;
+              } else {
+                return <MdVolumeUp size={24} />;
+              }
+            })()}
             <Slider
               aria-label="Volume"
               value={volume}
