@@ -60,18 +60,20 @@ const spotifyApi = new SpotifyWebApi({
 function SpotifyPlayer(props) {
   const dispatch = useDispatch();
   const { user_auth } = useSelector((state) => state.auth);
+  const { tracks } = useSelector((state) => state.track);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(100);
   // const duration = 200;
-  const [duration, setDuration] = useState(0);
-  const [position, setPosition] = useState(32);
+  const [duration, setDuration] = useState(-2);
+  const [position, setPosition] = useState(-1);
   const [player, setPlayer] = useState(undefined);
   const [is_active, setActive] = useState(false);
   const [current_track, setTrack] = useState(track);
   const increment = useRef(null);
 
+  // toggle play/pause progress bar
   useEffect(() => {
-    if (!isPlaying) {
+    if (!isPlaying && position >= 0) {
       increment.current = setInterval(() => {
         setPosition((t) => t + 1);
       }, 1000);
@@ -80,16 +82,52 @@ function SpotifyPlayer(props) {
     }
   }, [isPlaying]);
 
+  // set access token for spotify api instance
   useEffect(() => {
     if (!user_auth) return;
     spotifyApi.setAccessToken(user_auth);
     console.log("[DEBUG] jump here and set user_auth to: ", user_auth);
   }, [user_auth]);
 
+  // set duration for current playing track
   useEffect(() => {
     if (!current_track) return;
     setDuration(Math.round(current_track.duration_ms / 1000));
   }, [current_track]);
+
+  // set context uri for the player
+  useEffect(() => {
+    if (tracks.length <= 0) return;
+    if (tracks[0].includes("spotify:track:")) {
+      spotifyApi
+        .play({
+          uris: tracks,
+        })
+        .then((res) => {
+          player.getCurrentState().then((state) => {
+            console.log("[DEBUG] current state: ", state);
+          });
+          player.resume();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      spotifyApi
+        .play({
+          context_uri: tracks[0],
+        })
+        .then((res) => {
+          player.getCurrentState().then((state) => {
+            console.log("[DEBUG] current state context: ", state);
+          });
+          player.resume();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [tracks]);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -179,6 +217,7 @@ function SpotifyPlayer(props) {
   };
 
   const formatDuration = (value) => {
+    if (value < 0) return null;
     const minute = Math.floor(value / 60);
     const secondLeft = value - minute * 60;
     return `${minute}:${secondLeft <= 9 ? `0${secondLeft}` : secondLeft}`;

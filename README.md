@@ -32,10 +32,11 @@
   - [x] Basic interface and buttons
   - [x] Forward track, backward track, pause/play functionality
   - [x] Progress bar functionality
-  - [ ] Progress bar seek
-  - [ ] Volume control
-  - [ ] Track name, artist name display
-  - [ ] Change context uri
+  - [x] Progress bar seek
+  - [x] Volume control
+  - [x] Track name, artist name display
+  - [x] Change context uri
+  - [ ] Shuffle and repeat mode toggling and indication
 - [ ] Initial UI, with fully functional components first
 - [ ] Refined UI
 
@@ -47,3 +48,24 @@ When using `react-spotify-web-playback`, refreshing token and using new token ca
 -> Breaking the listening flow (since it lost its current playback state)
 
 > Will find way to fix this
+
+For application's included user:
+
+- Use this .env for development phase's usage (this should be put in the root directory):
+
+```
+NODE_ENV=development
+PORT=5000
+SPOTIFY_CLIENT_ID=7fffa867d48f4599ab321c7275025544
+SPOTIFY_CLIENT_SECRET=d9ec30ce34b44dbaa03e192862a50604
+SPOTIFY_REDIRECT_URI=http://localhost:3000/api/auth/callback
+JWT_SECRET=4Gt3MgYnOXXX7j2dqrEhclwGsS7DWL800JlNRUVwZRwaX9RhD6St9TMURQkNaPA
+COOKIE_SECRET=yoursecretcookiemonster
+```
+
+Installation:
+
+- _Prerequisite_: `node`, `yarn`
+
+- Install the needed modules using `yarn` both in the root and frontend/ directories
+- Then cd to root, start the frontend and backend using `yarn all` command.

@@ -121,7 +121,7 @@ function Search({ auth }) {
       }
     );
 
-    spotifyApi.searchPlaylists(search).then(
+    spotifyApi.searchPlaylists(search, { market: "VN" }).then(
       (res) => {
         if (cancel) return;
         setPlaylistSearchResults(
