@@ -42,13 +42,6 @@
 
 ---
 
-Issues:
-
-When using `react-spotify-web-playback`, refreshing token and using new token caused the playback device to re-instantiate
--> Breaking the listening flow (since it lost its current playback state)
-
-> Will find way to fix this
-
 For application's included user:
 
 - Use this .env for development phase's usage (this should be put in the root directory):
@@ -61,6 +54,18 @@ SPOTIFY_CLIENT_SECRET=d9ec30ce34b44dbaa03e192862a50604
 SPOTIFY_REDIRECT_URI=http://localhost:3000/api/auth/callback
 JWT_SECRET=4Gt3MgYnOXXX7j2dqrEhclwGsS7DWL800JlNRUVwZRwaX9RhD6St9TMURQkNaPA
 COOKIE_SECRET=yoursecretcookiemonster
+```
+
+Or you can just create your own Spotify for developer application and create your own `.env` file with given fields:
+
+```
+NODE_ENV=development
+PORT=5000
+SPOTIFY_CLIENT_ID=<YOUR_APP_CLIENT_ID>
+SPOTIFY_CLIENT_SECRET=<YOUR_APP_CLIENT_SECRET>
+SPOTIFY_REDIRECT_URI=http://localhost:3000/api/auth/callback
+JWT_SECRET=<YOUR_JWT_SECRET>
+COOKIE_SECRET=<YOUR_COOKIE_SECRET>
 ```
 
 Installation:
